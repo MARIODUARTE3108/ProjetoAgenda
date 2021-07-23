@@ -1,0 +1,54 @@
+﻿@model ProjetoAgenda.Models.ContatoConsultaModel
+@{
+    ViewData["Title"] = "Consulta";
+    Layout = "~/Views/Templates/Layout.cshtml";
+}
+
+<h3>Consulta de contatos</h3>
+<p>
+    Listagem de contatos cadastrados no sistema.
+</p>
+<hr />
+
+@if (TempData["Mensagem"] != null)
+{
+    <div class="alert alert-secondary mb-2">
+        <strong>@TempData["Mensagem"]</strong>
+    </div>
+}
+
+<table id="tabela_dados" class="table table-sm">
+    <thead>
+        <tr>
+            <th>Id do contato: </th>
+            <th>Nome do Contato: </th>
+            <th>Operações: </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Contatos)
+        {
+            <tr>
+                <td>@item.IdContato</td>
+                <td>@item.Nome</td>
+                <td>
+                    <a href="/Contato/Edicao?id=@item.IdContato"
+                       class="btn btn-primary btn-sm">Alterar</a>
+
+                    <a href="/Contato/Exclusao?id=@item.IdContato"
+                       onclick="return confirm('Deseja excluir o contato @item.Nome?');"
+                       class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5">
+                Quantidade de contatos: @Model.Contatos.Count
+            </td>
+        </tr>
+    </tfoot>
+</table>
+

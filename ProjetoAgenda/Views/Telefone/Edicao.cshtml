@@ -1,0 +1,38 @@
+﻿@model ProjetoAgenda.Models.TelefoneEdicaoModel
+@{
+    ViewData["Title"] = "Edicao";
+    Layout = "~/Views/Templates/Layout.cshtml";
+}
+
+<h3>Atualização de Telefone</h3>
+<p>
+    Utilize o formulário para alterar o telefone.
+</p>
+<hr />
+
+@if (TempData["Mensagem"] != null)
+{
+    <div class="alert alert-secondary mb-2">
+        <strong>@TempData["Mensagem"]</strong>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.IdTelefone)
+
+    <label> Número do telefone: </label>
+    @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
+    <div class="text-danger">
+        @Html.ValidationMessageFor(model => model.Numero)
+    </div>
+
+    <label> Número do Id do contato: </label>
+    @Html.TextBoxFor(model => model.IdContato, new { @class = "form-control" })
+    <div class="text-danger">
+        @Html.ValidationMessageFor(model => model.IdContato)
+    </div>
+    <br />
+
+    <input type="submit" value="Salvar Alterações" class="btn btn-primary" />
+}

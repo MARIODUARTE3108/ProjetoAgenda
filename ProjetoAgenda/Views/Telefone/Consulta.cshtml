@@ -1,0 +1,54 @@
+﻿@model ProjetoAgenda.Models.TelefoneConsultaModel
+@{
+    ViewData["Title"] = "Consulta";
+    Layout = "~/Views/Templates/Layout.cshtml";
+}
+
+<h3>Consulta de telefones</h3>
+<p>
+    Listagem de telefones cadastrados no sistema.
+</p>
+<hr />
+
+@if (TempData["Mensagem"] != null)
+{
+    <div class="alert alert-secondary mb-2">
+        <strong>@TempData["Mensagem"]</strong>
+    </div>
+}
+
+<table id="tabela_dados" class="table table-sm">
+    <thead>
+        <tr>
+            <th>Id do telefone: </th>
+            <th>Número do Telefone: </th>
+            <th>Id do Contato: </th>
+            <th>Operações: </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Telefones)
+        {
+        <tr>
+            <td>@item.IdTelefone</td>
+            <td>@item.Numero</td>
+            <td>@item.IdContato</td>
+            <td>
+                <a href="/Telefone/Edicao?id=@item.IdTelefone"
+                   class="btn btn-primary btn-sm">Alterar</a>
+
+                <a href="/Telefone/Exclusao?id=@item.IdTelefone"
+                   onclick="return confirm('Deseja excluir o número @item.Numero?');"
+                   class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5">
+                Quantidade de telefones: @Model.Telefones.Count
+            </td>
+        </tr>
+    </tfoot>
+</table>

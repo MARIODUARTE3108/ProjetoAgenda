@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Layout</title>
+
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+
+            <div class="col-md-3">
+                <img src="http://www.carrierweb.com.br/wp-content/uploads/2021/05/logo_carrierweb_338x34.png"
+                     class="img-fluid" />
+                <br />
+                <br />
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/Home/Index" class="btn btn-outline-primary">
+                        Página inicial
+                    </a>
+                </div>
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/Contato/Cadastro" class="btn btn-outline-primary">
+                        Cadastro de Contato
+                    </a>
+                </div>
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/Contato/Consulta" class="btn btn-outline-primary">
+                        Consulta de Contato
+                    </a>
+                </div>
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/Telefone/Cadastro" class="btn btn-outline-primary">
+                        Cadastro de Telefone
+                    </a>
+                </div>
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/Telefone/Consulta" class="btn btn-outline-primary">
+                        Consulta de Telefone
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-md-9">
+
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/bootstrap.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#tabela_dados').DataTable({
+                "pageLength": 5,
+                "lengthMenu": [5, 10, 20, 50, 100],
+                "oLanguage": {
+                    "sUrl": "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
+     }
+            });
+        });
+    </script>
+
+</body>
+</html>
